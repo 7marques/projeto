@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulário de Cadastro</title>
+  <link rel="icon" href="../imagens/logo1.png" type="image/png">
+    <link href="../scripts/BOOTSSTRAPCSS.css" rel="stylesheet">
+    <link rel="stylesheet" href="../scripts/styles.css">
+    <link rel="stylesheet" href="../scripts/pesquisa.css">
+    <link rel="stylesheet" href="../scripts/social.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f8f9fa; }
+    .form-container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(0,0,0,.1);
+    }
+    .error { color: red; font-size: 0.85em; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark custom-header">
+        <div class="container-fluid">
+            <img src="https://i.imgur.com/o9TLd1R.png" alt="Logo" style="height: 100px;" referrerpolicy="no-referrer">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="..//paginas/sobrenos.html">Sobre Nós</a></li>
+                    <li id="destaquesButtonContainer"></li>
+                    <li class="nav-item"><a class="nav-link" href="..//paginas/login-register.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="..//paginas/cadastro.html">Cadastro</a></li>
+                    <li class="nav-item nav-dropdown"><a class="nav-link" href="..//paginas/destaques.html">Catalogo</a>
+                        <div class="nav-dropdown-content">
+                            <a href="..//paginas/imagem1.html">Jaleco 1</a>
+                            <a href="..//paginas/imagem2.html">Jaleco 2</a>
+                            <a href="..//paginas/imagem3.html">Jaleco 3</a>
+                            <a href="..//paginas/imagem4.html">Jaleco 4</a>
+                            <a href="..//paginas/imagem5.html">Jaleco 5</a>
+                            <a href="..//paginas/imagem6.html">Jaleco 6</a>
+                        </div>
+                    </li>
+                    <li id="logoutButtonContainer" class="nav-item" style="display: none;">
+                        <button id="logoutButton" class="btn btn-danger">Deslogar</button>
+                    <li id="limparButtonContainer" class="nav-item" style="display: none;">
+                        <button id="limparButton" class="btn btn-danger">Limpar</button>
+                </ul>
+                <div class="search-container">
+                    <input class="form-control me-2" id="campoBusca" type="search" placeholder="Buscar..." aria-label="Buscar" oninput="verificarSelecao()" onclick="mostrarSugestoes()">
+                    
+                    <!-- Menu suspenso de sugestões -->
+                    <div id="suggestionsContainer" class="suggestions">
+                        <div class="suggestion-item" onclick="selecionarSugestao('Início')">Início</div>
+                        <div class="suggestion-item" data-type="destaques" onclick="selecionarSugestao('Destaques')">Destaques</div>
+                        <div class="suggestion-item" onclick="selecionarSugestao('Login')">Login</div>
+                        <div class="suggestion-item" onclick="selecionarSugestao('Cadastro')">Cadastro</div>
+                    </div>
+                </div>
+                <button id="darkModeToggle" class="btn btn-outline-light ms-3">
+                    <i id="darkModeIcon" class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="form-container">
+    <img src="https://i.imgur.com/o9TLd1R.png" alt="Logo" referrerpolicy="no-referrer" class="d-block mx-auto mb-3" style="max-width:100px;">
+    <h4 class="text-center mb-4">Formulário de Cadastro</h4>
+
+    <form id="cadastroForm" novalidate>
+
+      <!-- Nome e Data de Nascimento -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-8">
+          <label for="nome" class="form-label">Nome Completo</label>
+          <input type="text" class="form-control" id="nome" required>
+          <div class="error" id="nomeErro"></div>
+        </div>
+        <div class="col-md-4">
+          <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+          <input type="date" class="form-control" id="dataNascimento" required>
+        </div>
+      </div>
+
+      <!-- Sexo e Nome Materno -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <label for="sexo" class="form-label">Sexo</label>
+          <select class="form-select" id="sexo" required>
+            <option value="">Selecione</option>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        <div class="col-md-8">
+          <label for="nomeMaterno" class="form-label">Nome Materno</label>
+          <input type="text" class="form-control" id="nomeMaterno" required>
+        </div>
+      </div>
+
+      <!-- CPF e E-mail -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <label for="cpf" class="form-label">CPF</label>
+          <input type="text" class="form-control" id="cpf" required>
+          <div class="error" id="cpfErro"></div>
+        </div>
+        <div class="col-md-8">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+      </div>
+
+      <!-- Telefones -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label for="celular" class="form-label">Telefone Celular</label>
+          <input type="tel" class="form-control" id="celular" placeholder="Ex.: (+55)11-9XXXXXXXX" required>
+          <div class="error" id="celularErro"></div>
+        </div>
+        <div class="col-md-6">
+          <label for="fixo" class="form-label">Telefone Fixo</label>
+          <input type="tel" class="form-control" id="fixo" placeholder="Ex.: (+55)11-XXXXXXXX" required>
+          <div class="error" id="fixoErro"></div>
+        </div>
+      </div>
+
+      <!-- Endereço -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-9">
+          <label for="logradouro" class="form-label">Logradouro</label>
+          <input type="text" class="form-control" id="logradouro" required>
+        </div>
+        <div class="col-md-3">
+          <label for="numero" class="form-label">Número</label>
+          <input type="text" class="form-control" id="numero" required>
+        </div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label for="complemento" class="form-label">Complemento</label>
+          <input type="text" class="form-control" id="complemento">
+        </div>
+        <div class="col-md-6">
+          <label for="bairro" class="form-label">Bairro</label>
+          <input type="text" class="form-control" id="bairro" required>
+        </div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <label for="cidade" class="form-label">Cidade</label>
+          <input type="text" class="form-control" id="cidade" required>
+        </div>
+        <div class="col-md-4">
+          <label for="estado" class="form-label">Estado</label>
+          <input type="text" class="form-control" id="estado" required>
+        </div>
+        <div class="col-md-4">
+          <label for="cep" class="form-label">CEP</label>
+          <input type="text" class="form-control" id="cep" required>
+          <div class="error" id="cepErro"></div>
+        </div>
+      </div>
+
+      <!-- Login e Senha -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <label for="login" class="form-label">Login</label>
+          <input type="text" class="form-control" id="login" required>
+          <div class="error" id="loginErro"></div>
+        </div>
+        <div class="col-md-4">
+          <label for="senha" class="form-label">Senha</label>
+          <input type="password" class="form-control" id="senha" required>
+          <input type="checkbox" onclick="senha.type = this. checked ? 'text' : 'password'">
+        </div>
+        <div class="col-md-4">
+          <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
+          <input type="password" class="form-control" id="confirmarSenha" required>
+          <input type="checkbox" onclick="confirmarSenha.type = this. checked ? 'text' : 'password'">
+          <div class="error" id="senhaErro"></div>
+        </div>
+      </div>
+
+      <!-- Botões -->
+      <div class="d-flex justify-content-between mt-4">
+        <button type="submit" class="btn btn-success">Enviar</button>
+        <div class="text-center fs-6">
+            <a href="..//paginas/index.html">Voltar à tela inicial</a><br>
+            <a href="..//paginas/login-register.html">Já tem cadastro? Faça o login aqui</a>
+        </div>
+        <button type="reset" class="btn btn-secondary">Limpar</button>
+      </div>
+    </form>
+  </div>
+  <footer class="custom-footer text-black text-center py-3">
+            <!-- Mensagem de direitos autorais -->
+            <p>&copy; 2024 Meu Jaleco - Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="/scripts/cadastro.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

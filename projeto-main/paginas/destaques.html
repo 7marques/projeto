@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Aqui eu defino o tipo do documento como HTML5 e especifico o idioma da página como português do Brasil -->
+    <meta charset="UTF-8">
+    <!-- Defino o meta viewport para garantir que o layout seja responsivo em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- O título da página será "Catalogo Virtual" -->
+    <title>Catalogo Virtual</title>
+    <link rel="icon" href="../imagens/logo1.png" type="image/png">
+    
+    <!-- Carrego o CSS do Bootstrap para usar a estrutura de grid e estilos prontos -->
+    <link href="../scripts/BOOTSSTRAPCSS.css" rel="stylesheet">
+    <!-- Aqui estou linkando meu arquivo CSS personalizado chamado "styles.css" -->
+    <link rel="stylesheet" href="../scripts/styles.css">
+    
+    <!-- Incluo os ícones do FontAwesome para usar o ícone de lua/sol no botão de dark mode -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../scripts/pesquisa.css">
+    
+</head>
+<body>
+
+    <!-- Header - Começo da barra de navegação do site -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-header">
+        <div class="container-fluid">
+            <img src="https://i.imgur.com/o9TLd1R.png" alt="Logo" style="height: 100px;" referrerpolicy="no-referrer">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="..//paginas/sobrenos.html">Sobre Nós</a></li>
+                    <li id="destaquesButtonContainer"></li>
+                    <li class="nav-item"><a class="nav-link" href="..//paginas/login-register.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="..//paginas/cadastro.html">Cadastro</a></li>
+                    <li class="nav-item nav-dropdown"><a class="nav-link" href="..//paginas/destaques.html">Catalogo</a>
+                        <div class="nav-dropdown-content">
+                            <a href="..//paginas/imagem1.html">Jaleco 1</a>
+                            <a href="..//paginas/imagem2.html">Jaleco 2</a>
+                            <a href="..//paginas/imagem3.html">Jaleco 3</a>
+                            <a href="..//paginas/imagem4.html">Jaleco 4</a>
+                            <a href="..//paginas/imagem5.html">Jaleco 5</a>
+                            <a href="..//paginas/imagem6.html">Jaleco 6</a>
+                        </div>
+                    </li>
+                    <li id="logoutButtonContainer" class="nav-item" style="display: none;">
+                        <button id="logoutButton" class="btn btn-danger">Deslogar</button>
+                    <li id="limparButtonContainer" class="nav-item" style="display: none;">
+                        <button id="limparButton" class="btn btn-danger">Limpar</button>
+                </ul>
+                <div class="search-container">
+                    <input class="form-control me-2" id="campoBusca" type="search" placeholder="Buscar..." aria-label="Buscar" oninput="verificarSelecao()" onclick="mostrarSugestoes()">
+                    
+                    <!-- Menu suspenso de sugestões -->
+                    <div id="suggestionsContainer" class="suggestions">
+                        <div class="suggestion-item" onclick="selecionarSugestao('Início')">Início</div>
+                        <div class="suggestion-item" data-type="destaques" onclick="selecionarSugestao('Destaques')">Destaques</div>
+                        <div class="suggestion-item" onclick="selecionarSugestao('Login')">Login</div>
+                        <div class="suggestion-item" onclick="selecionarSugestao('Cadastro')">Cadastro</div>
+                    </div>
+                </div>
+                <button id="darkModeToggle" class="btn btn-outline-light ms-3">
+                    <i id="darkModeIcon" class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seção do álbum de imagens -->
+    <div class="container py-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            <!-- Imagem 1 -->
+            <div class="col">
+                <div class="card h-100">
+                    <a href="../paginas/imagem1.html" class="image-link">
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/UGbq35D.png" class="card-img-top" alt="Imagem 1"referrerpolicy="no-referrer">
+                            <div class="overlay">
+                                <div class="text">Confeccionado em tecido Dry Fit super confortável, duradouro e look profissional</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Imagem 2 -->
+            <div class="col">
+                <div class="card h-100">
+                    <a href="imagem2.html" class="image-link">
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/j9w6kNf.png" class="card-img-top" alt="Imagem 2"referrerpolicy="no-referrer">
+                            <div class="overlay">
+                                <div class="text">Confeccionado em tecido Dry Fit super confortável, duradouro e look profissional</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    
+            <!-- Imagem 3 -->
+            <div class="col">
+                <div class="card h-100">
+                    <a href="imagem3.html" class="image-link">
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/ntF4cJ3.png" class="card-img-top" alt="Imagem 3"referrerpolicy="no-referrer">
+                            <div class="overlay">
+                                <div class="text">Confeccionado em tecido Dry Fit super confortável, duradouro e look profissional</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    
+            <!-- Imagem 4 -->
+            <div class="col">
+                <div class="card h-100">
+                    <a href="imagem4.html" class="image-link">
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/fuRha4x.png" class="card-img-top" alt="Imagem 4"referrerpolicy="no-referrer">
+                            <div class="overlay">
+                                <div class="text">Confeccionado em tecido Dry Fit super confortável, duradouro e look profissional</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    
+            <!-- Imagem 5 -->
+            <div class="col">
+                <div class="card h-100">
+                    <a href="imagem5.html" class="image-link">
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/rxtypUO.png" class="card-img-top" alt="Imagem 5"referrerpolicy="no-referrer">
+                            <div class="overlay">
+                                <div class="text">Confeccionado em tecido Dry Fit super confortável, duradouro e look profissional</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    
+            <!-- Imagem 6 -->
+            <div class="col">
+                <div class="card h-100">
+                    <a href="imagem6.html" class="image-link">
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/U7OM8KP.png" class="card-img-top" alt="Imagem 6"referrerpolicy="no-referrer">
+                            <div class="overlay">
+                                <div class="text">Confeccionado em tecido Dry Fit super confortável, duradouro e look profissional</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Footer (Rodapé do site) -->
+    <footer class="custom-footer text-black text-center py-3">
+        <div class="container">
+            <!-- Mensagem de direitos autorais e links de política de privacidade e termos de uso -->
+            <p>&copy; 2024 Seu Site - Todos os direitos reservados.</p>
+            <p>
+                <a href="#" class="text-black me-3">Política de Privacidade</a>
+                <a href="#" class="text-black">Termos de Uso</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS do Bootstrap e Popper.js para garantir que os componentes JavaScript funcionem -->
+    <script src="../scripts/BOOTSSTRAPpopper.js"></script>
+    <script src="../scripts/BOOTSSTRAPjavascript.js"></script>
+
+    <!-- Script do modo Dark com ícone -->
+    <script src="../scripts/darkmode.js"></script>
+    
+    <script src="../scripts/pesquisa.js"></script>
+</body>
+</html>

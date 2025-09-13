@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" href="../imagens/logo1.png" type="image/png">
+    <link href="../scripts/BOOTSSTRAPCSS.css" rel="stylesheet">
+    <link rel="stylesheet" href="../scripts/styles.css">
+    <link rel="stylesheet" href="../scripts/pesquisa.css">
+    <link rel="stylesheet" href="../scripts/social.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .wrapper {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .form-field {
+            margin-bottom: 15px;
+        }
+
+        .form-field input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .text-center a {
+            color: #007bff;
+        }
+
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark custom-header">
+        <div class="container-fluid">
+            <img src="https://i.imgur.com/o9TLd1R.png" alt="Logo" style="height: 100px;" referrerpolicy="no-referrer">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="..//paginas/sobrenos.html">Sobre Nós</a></li>
+                    <li id="destaquesButtonContainer"></li>
+                    <li class="nav-item"><a class="nav-link" href="..//paginas/login-register.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="..//paginas/cadastro.html">Cadastro</a></li>
+                    <li class="nav-item nav-dropdown"><a class="nav-link" href="..//paginas/destaques.html">Catalogo</a>
+                        <div class="nav-dropdown-content">
+                            <a href="..//paginas/imagem1.html">Jaleco 1</a>
+                            <a href="..//paginas/imagem2.html">Jaleco 2</a>
+                            <a href="..//paginas/imagem3.html">Jaleco 3</a>
+                            <a href="..//paginas/imagem4.html">Jaleco 4</a>
+                            <a href="..//paginas/imagem5.html">Jaleco 5</a>
+                            <a href="..//paginas/imagem6.html">Jaleco 6</a>
+                        </div>
+                    </li>
+                    <li id="logoutButtonContainer" class="nav-item" style="display: none;">
+                        <button id="logoutButton" class="btn btn-danger">Deslogar</button>
+                    <li id="limparButtonContainer" class="nav-item" style="display: none;">
+                        <button id="limparButton" class="btn btn-danger">Limpar</button>
+                </ul>
+                <div class="search-container">
+                    <input class="form-control me-2" id="campoBusca" type="search" placeholder="Buscar..." aria-label="Buscar" oninput="verificarSelecao()" onclick="mostrarSugestoes()">
+                    
+                    <!-- Menu suspenso de sugestões -->
+                    <div id="suggestionsContainer" class="suggestions">
+                        <div class="suggestion-item" onclick="selecionarSugestao('Início')">Início</div>
+                        <div class="suggestion-item" data-type="destaques" onclick="selecionarSugestao('Destaques')">Destaques</div>
+                        <div class="suggestion-item" onclick="selecionarSugestao('Login')">Login</div>
+                        <div class="suggestion-item" onclick="selecionarSugestao('Cadastro')">Cadastro</div>
+                    </div>
+                </div>
+                <button id="darkModeToggle" class="btn btn-outline-light ms-3">
+                    <i id="darkModeIcon" class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="https://i.imgur.com/o9TLd1R.png" alt="Logo" width="100">
+        </div>
+        <div class="text-center mt-4 name">
+            Faça seu Login
+        </div>
+        <form class="p-3 mt-3" id="loginForm">
+            <div class="form-field d-flex align-items-center">
+                <input type="text" name="userName" id="userName" placeholder="Usuário" required>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <input type="password" name="password" id="pwd" placeholder="Senha" required>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <input type="checkbox" onclick="pwd.type = this. checked ? 'text' : 'password'">
+            </div>
+            <button type="submit" class="btn mt-3">Login</button>
+        </form>
+        <div class="text-center fs-6">
+            <a href="..//paginas/index.html">Voltar à tela inicial</a><br>
+            <a href="..//paginas/cadastro.html">Não tem cadastro? Registre-se aqui</a>
+        </div>
+    </div>
+    <footer class="custom-footer text-black text-center py-3">
+            <!-- Mensagem de direitos autorais -->
+            <p>&copy; 2024 Meu Jaleco - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const userNameInput = document.getElementById('userName').value;
+            const passwordInput = document.getElementById('pwd').value;
+
+            // Recuperar dados do LocalStorage
+            const storedUserData = JSON.parse(localStorage.getItem('userData'));
+
+            if (storedUserData) {
+                const { username, password } = storedUserData;
+
+                // Verifica se os dados correspondem
+                if (userNameInput === username && passwordInput === password) {
+                    alert('Login realizado com sucesso!');
+                    // Define o usuário como logado
+                    localStorage.setItem('isLoggedIn', 'true');
+                    // Redirecionar para outra página
+                    window.location.href = "..//paginas/index.html";
+                } else {
+                    alert('Usuário ou senha inválidos.');
+                }
+            } else {
+                alert('Nenhum usuário registrado. Por favor, registre-se antes de fazer login.');
+            }
+        });
+    </script>
+</body>
+
+</html>
